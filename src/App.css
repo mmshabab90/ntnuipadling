@@ -43,6 +43,11 @@ footer {
   padding-left: 300px;
 }
 
+.spinner {
+  margin-top: 25%;
+  margin-left: 10%;
+}
+
 @media only screen and (max-width: 992px) {
   header,
   main,

@@ -1,7 +1,7 @@
-import events from "./data/events.json";
+// import events from "./data/events.json";
 
 const initState = {
-  events: events,
+  events: [],
 };
 
 const eventReducer = (state = initState, action) => {

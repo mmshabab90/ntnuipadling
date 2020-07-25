@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import EventList from "./EventList";
 import { compose } from "redux";
-import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
+import { connect } from "react-redux";
 
 class Events extends Component {
   render() {
-    const { events } = this.props;
     return (
       <div className="container">
         <div className="row">
-          <EventList events={events} />
+          <EventList events={this.props.events} />
         </div>
       </div>
     );
@@ -19,11 +18,11 @@ class Events extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    events: state.events.events,
+    events: state.firestore.ordered.events,
   };
 };
 
 export default compose(
-  connect(mapStateToProps, {}),
-  firestoreConnect([{ collection: "events" }])
+  firestoreConnect(() => ["events"]),
+  connect(mapStateToProps)
 )(Events);
