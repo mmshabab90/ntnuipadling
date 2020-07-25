@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "day": "Friday",
+    "class": "A",
+    "date": "24/07/2020",
+    "startTime": "10:04",
+    "endTime": "11:04",
+    "signedParticipants": 10,
+    "totalParticipants": 12
+  },
+  {
+    "id": 2,
+    "day": "Saturday",
+    "class": "B",
+    "date": "25/07/2020",
+    "startTime": "11:04",
+    "endTime": "13:04",
+    "signedParticipants": 7,
+    "totalParticipants": 12
+  },
+  {
+    "id": 3,
+    "day": "Sunday",
+    "class": "C",
+    "date": "27/07/2020",
+    "startTime": "13:04",
+    "endTime": "14:04",
+    "signedParticipants": 12,
+    "totalParticipants": 12
+  },
+  {
+    "id": 4,
+    "day": "Monday",
+    "class": "A",
+    "date": "29/07/2020",
+    "startTime": "15:04",
+    "endTime": "16:04",
+    "signedParticipants": 1,
+    "totalParticipants": 12
+  },
+  {
+    "id": 5,
+    "day": "Tuesday",
+    "class": "A",
+    "date": "30/07/2020",
+    "startTime": "09:04",
+    "endTime": "10:04",
+    "signedParticipants": 0,
+    "totalParticipants": 12
+  }
+]
