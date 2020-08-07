@@ -69,7 +69,7 @@ class SignUp extends Component {
   };
 
   render() {
-    const { auth } = this.props;
+    const { auth, authError } = this.props;
     const { error } = this.state;
 
     if (auth.uid) return <Redirect to="/dashboard" />;
@@ -152,6 +152,14 @@ class SignUp extends Component {
             />
           </div>
 
+          {authError ? (
+            <div className="input-field">
+              <blockquote className="text-red flow-text">
+                {authError}
+              </blockquote>
+            </div>
+          ) : null}
+
           <div className="input-field" style={{ paddingTop: "25px" }}>
             <button
               className="btn teal lighten-1 z-depth-3"
@@ -193,6 +201,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth,
+    authError: state.auth.authError,
   };
 };
 
