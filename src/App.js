@@ -13,6 +13,7 @@ import CreateEvent from "./components/Events/CreateEvent";
 import EventDetails from "./components/Events/EventDetails";
 import ProtectedRoute from "./ProtectedRoute";
 import Error404 from "./components/layout/Error404";
+import EventsViewOnly from "./components/Events/EventsViewOnly";
 
 export default class App extends Component {
   componentDidMount() {}
@@ -31,14 +32,9 @@ export default class App extends Component {
               <Route exact path="/" component={SignIn} />
               <Route path="/signin" component={SignIn} />
               <Route path="/signup" component={SignUp} />
-              <Route path="/signup" component={SignUp} />
+              <Route exact path="/events-readonly" component={EventsViewOnly} />
               <ProtectedRoute exact path="/dashboard" component={Dashboard} />
               <ProtectedRoute exact path="/events" component={Events} />
-              <ProtectedRoute
-                exact
-                path="/events-readonly"
-                component={Events}
-              />
               <ProtectedRoute path="/event/:id" component={EventDetails} />
               <ProtectedRoute path="/addevents" component={CreateEvent} />
               <Route path="*" component={Error404} />

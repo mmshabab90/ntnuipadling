@@ -31,14 +31,14 @@ class RightSideNav extends Component {
         </li>
 
         <li className="sidenav-close">
-          <NavLink to="/addevents">
-            <i className="material-icons left">event_note</i> Add Events
+          <NavLink to="/events">
+            <i className="material-icons left">event</i> Events List
           </NavLink>
         </li>
 
         <li className="sidenav-close">
-          <NavLink to="/events">
-            <i className="material-icons left">event</i> Events List
+          <NavLink to="/addevents">
+            <i className="material-icons left">event_note</i> Add Events
           </NavLink>
         </li>
 

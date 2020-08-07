@@ -17,14 +17,17 @@ class Dashboard extends Component {
     }
   }
   render() {
-    if (this.state.isLoading === true) {
+    const { events, auth } = this.props;
+    const { isLoading } = this.state;
+
+    if (isLoading === true) {
       return <Spinner />;
     }
     return (
       <div className="container dashboard">
         <div className="row">
           <div className="col s12 m8">
-            <EventList events={this.props.events} />
+            <EventList events={events} auth={auth} />
           </div>
           <div className="col s12 m3 offset-m1">
             <Notifications />
@@ -38,6 +41,7 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => {
   return {
     events: state.firestore.ordered.events,
+    auth: state.firebase.auth,
   };
 };
 

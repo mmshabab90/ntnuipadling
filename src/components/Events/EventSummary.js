@@ -21,7 +21,7 @@ export default class EventSummary extends Component {
   };
 
   render() {
-    const { event, location } = this.props;
+    const { event, location, auth } = this.props;
     const { signedParticipants, blockAdd } = this.state;
 
     return (
@@ -56,30 +56,29 @@ export default class EventSummary extends Component {
             </p>
           </div>
 
-          <div className="row" style={{ marginTop: "15px" }}>
-            <div className="col s6">
-              {event.status === "Active" ? (
-                <button
-                  className="btn z-depth-3 light-blue lighten-2"
-                  onClick={this.handleClick}
-                  disabled={blockAdd === true ? true : false}
-                >
-                  Attend
-                </button>
-              ) : (
-                <p className="grey-text">Event Inactive</p>
-              )}
-            </div>
+          {auth && auth.uid ? (
+            <div className="row" style={{ marginTop: "15px" }}>
+              <div className="col s6">
+                {event.status === "Active" ? (
+                  <button
+                    className="btn z-depth-3 light-blue lighten-2"
+                    onClick={this.handleClick}
+                    disabled={blockAdd === true ? true : false}
+                  >
+                    Attend
+                  </button>
+                ) : (
+                  <p className="grey-text">Event Inactive</p>
+                )}
+              </div>
 
-            <div className="col s6">
-              <Link
-                className="btn z-depth-1 teal lighten-2"
-                to={location}
-              >
-                Edit
-              </Link>
+              <div className="col s6">
+                <Link className="btn z-depth-1 teal lighten-2" to={location}>
+                  Edit
+                </Link>
+              </div>
             </div>
-          </div>
+          ) : null}
         </div>
       </div>
     );

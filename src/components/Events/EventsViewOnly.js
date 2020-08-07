@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import EventList from "./EventList";
+import { connect } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
-import { connect } from "react-redux";
+import EventList from "./EventList";
 
-class Events extends Component {
+export class EventsViewOnly extends Component {
   render() {
     const { events, auth } = this.props;
     return (
@@ -27,4 +27,4 @@ const mapStateToProps = (state) => {
 export default compose(
   firestoreConnect(() => ["events"]),
   connect(mapStateToProps)
-)(Events);
+)(EventsViewOnly);
