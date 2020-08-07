@@ -10,6 +10,7 @@
     "i18next": "^19.6.3",
     "materialize-css": "^1.0.0-rc.2",
     "react": "^16.13.1",
+    "react-date-picker": "^8.0.1",
     "react-dom": "^16.13.1",
     "react-firestore": "^1.0.1",
     "react-i18next": "^11.7.0",

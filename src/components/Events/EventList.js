@@ -10,7 +10,11 @@ const EventList = ({ events }) => {
         {events &&
           events.map((event) => {
             return (
-              <EventSummary event={event} key={event.id} />
+              <EventSummary
+                event={event}
+                key={event.id}
+                location={"/event/" + event.id}
+              />
             );
           })}
       </div>

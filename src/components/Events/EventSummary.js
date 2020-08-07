@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export default class EventSummary extends Component {
   state = {
@@ -8,9 +9,9 @@ export default class EventSummary extends Component {
 
   handleClick = () => {
     const { event } = this.props;
-    const { signedParticipants } = this.state;
+    // const { signedParticipants } = this.state;
 
-    if (signedParticipants < event.total_participants) {
+    if (event.signed_participants <= event.total_participants) {
       this.setState((prev) => ({
         signedParticipants: prev.signedParticipants + 1,
       }));
@@ -20,7 +21,7 @@ export default class EventSummary extends Component {
   };
 
   render() {
-    const { event } = this.props;
+    const { event, location } = this.props;
     const { signedParticipants, blockAdd } = this.state;
 
     return (
@@ -55,18 +56,29 @@ export default class EventSummary extends Component {
             </p>
           </div>
 
-          <div style={{ marginTop: "15px" }}>
-            {event.status === "Active" ? (
-              <button
-                className="btn z-depth-3 light-blue lighten-2"
-                onClick={this.handleClick}
-                disabled={blockAdd === true ? true : false}
+          <div className="row" style={{ marginTop: "15px" }}>
+            <div className="col s6">
+              {event.status === "Active" ? (
+                <button
+                  className="btn z-depth-3 light-blue lighten-2"
+                  onClick={this.handleClick}
+                  disabled={blockAdd === true ? true : false}
+                >
+                  Attend
+                </button>
+              ) : (
+                <p className="grey-text">Event Inactive</p>
+              )}
+            </div>
+
+            <div className="col s6">
+              <Link
+                className="btn z-depth-1 teal lighten-2"
+                to={location}
               >
-                Attend
-              </button>
-            ) : (
-              <p className="grey-text">Event Inactive</p>
-            )}
+                Edit
+              </Link>
+            </div>
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ export const createEvent = (event) => {
         created_at: new Date(),
         start_datetime: new Date(event.date + " " + event.start_time),
         end_datetime: new Date(event.date + " " + event.end_time),
+        signed_participants: 0,
       })
       .then(() => {
         dispatch({

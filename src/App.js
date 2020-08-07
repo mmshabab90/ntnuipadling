@@ -10,6 +10,7 @@ import Events from "./components/Events/Events";
 import SignIn from "./components/auth/SignIn";
 import SIgnUp from "./components/auth/SIgnUp";
 import CreateEvent from "./components/Events/CreateEvent";
+import EventDetails from "./components/Events/EventDetails";
 
 export default class App extends Component {
   componentDidMount() {}
@@ -26,7 +27,8 @@ export default class App extends Component {
           <main>
             <Switch>
               <Route exact path="/" component={Dashboard} />
-              <Route path="/events" component={Events} />
+              <Route exact path="/events" component={Events} />
+              <Route path="/event/:id" component={EventDetails} />
               <Route path="/addevents" component={CreateEvent} />
               <Route path="/signin" component={SignIn} />
               <Route path="/signup" component={SIgnUp} />
