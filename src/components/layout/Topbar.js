@@ -14,6 +14,7 @@ class Topbar extends Component {
   }
 
   render() {
+    const { auth } = this.props;
     return (
       <div className="navbar z-depth-3">
         <nav className="nav-wrapper cyan darken-3">
@@ -29,13 +30,16 @@ class Topbar extends Component {
               <Link to="/" className="brand-logo center">
                 <img alt="logo" src={Logo} />
               </Link>
-              <Link
-                to="#"
-                data-target="sidenav-right"
-                className="right sidenav-trigger show-on-medium-and-up"
-              >
-                <i className="material-icons">menu</i>
-              </Link>
+
+              {auth.uid ? (
+                <Link
+                  to="#"
+                  data-target="sidenav-right"
+                  className="right sidenav-trigger show-on-medium-and-up"
+                >
+                  <i className="material-icons">menu</i>
+                </Link>
+              ) : null}
 
               <NavLink
                 to="/"
@@ -53,8 +57,9 @@ class Topbar extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
-  return {};
+  return {
+    auth: state.firebase.auth,
+  };
 };
 
 export default connect(mapStateToProps)(Topbar);
