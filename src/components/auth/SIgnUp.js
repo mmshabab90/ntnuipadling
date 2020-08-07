@@ -105,14 +105,14 @@ class SignUp extends Component {
           </div>
 
           <div className="input-field">
-            <label htmlFor="password">Password (Min 8 Characters Long)</label>
+            <label htmlFor="password">Password (Min 6 Characters)</label>
             <input
               type="password"
               id="password"
               onChange={this.handleChange}
               className="validate tooltipped"
               data-position="bottom"
-              data-tooltip="Password must be minimum 8 characters long"
+              data-tooltip="Password must be minimum 6 characters long"
             />
             {error ? (
               <blockquote className="red-text">
