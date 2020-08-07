@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Logo from "../../paddling-logo.png";
 import { Link, NavLink } from "react-router-dom";
 import M from "materialize-css";
-export default class Topbar extends Component {
+import { connect } from "react-redux";
+class Topbar extends Component {
   componentDidMount() {
     const elSidenav = document.querySelectorAll(".sidenav");
     M.Sidenav.init(elSidenav, { draggable: true });
@@ -50,3 +51,10 @@ export default class Topbar extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {};
+};
+
+export default connect(mapStateToProps)(Topbar);

@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { signOut } from "../../store/actions/AuthActions";
 
-export default class RightSideNav extends Component {
+class RightSideNav extends Component {
   componentDidMount() {}
   render() {
+    const { signOut } = this.props;
+
     return (
       <ul id="sidenav-right" className="sidenav">
         <li className="sidenav-close">
@@ -43,11 +47,18 @@ export default class RightSideNav extends Component {
         </li>
 
         <li className="sidenav-close">
-          <NavLink to="/signin">
+          <a href="# " onClick={signOut}>
             <i className="material-icons left">exit_to_app</i> Log Out
-          </NavLink>
+          </a>
         </li>
       </ul>
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signOut: () => dispatch(signOut()),
+  };
+};
+export default connect(null, mapDispatchToProps)(RightSideNav);
