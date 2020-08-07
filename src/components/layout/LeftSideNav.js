@@ -7,7 +7,7 @@ export default class LeftSideNav extends Component {
     return (
       <ul id="sidenav-left" className="sidenav sidenav-fixed">
         <li className="sidenav-close">
-          <NavLink to="/events">
+          <NavLink to="/events-readonly">
             <i className="material-icons left">event</i> Events
           </NavLink>
         </li>

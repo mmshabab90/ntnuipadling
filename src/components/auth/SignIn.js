@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { signIn } from "../../store/actions/AuthActions";
+import { Redirect } from "react-router-dom";
 class SignIn extends Component {
   state = {
     email: "",
@@ -16,6 +17,9 @@ class SignIn extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.signIn(this.state);
+    if (!this.props.authError) {
+      return <Redirect to="/dashboard" />;
+    }
   };
 
   render() {
@@ -43,7 +47,7 @@ class SignIn extends Component {
               Login
             </button>
 
-            <div className="divider" />
+            <div className="divider" style={{ marginTop: "15px" }} />
             <div className="center">
               <p className="flow-text">OR</p>
             </div>

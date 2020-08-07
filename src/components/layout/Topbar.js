@@ -3,6 +3,7 @@ import Logo from "../../paddling-logo.png";
 import { Link, NavLink } from "react-router-dom";
 import M from "materialize-css";
 import { connect } from "react-redux";
+
 class Topbar extends Component {
   componentDidMount() {
     const elSidenav = document.querySelectorAll(".sidenav");
@@ -27,11 +28,14 @@ class Topbar extends Component {
               >
                 <i className="material-icons">menu</i>
               </Link>
-              <Link to="/" className="brand-logo center">
+              <Link
+                to={auth.uid ? "/dashboard" : "/"}
+                className="brand-logo center"
+              >
                 <img alt="logo" src={Logo} />
               </Link>
 
-              {auth.uid ? (
+              {auth.isLoaded && auth.uid ? (
                 <Link
                   to="#"
                   data-target="sidenav-right"
