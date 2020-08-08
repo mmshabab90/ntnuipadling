@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/ntnuipadling/static/css/main.4731f16e.chunk.css",
+    "main.js": "/ntnuipadling/static/js/main.8ecc9e8f.chunk.js",
+    "main.js.map": "/ntnuipadling/static/js/main.8ecc9e8f.chunk.js.map",
+    "runtime-main.js": "/ntnuipadling/static/js/runtime-main.4d897e34.js",
+    "runtime-main.js.map": "/ntnuipadling/static/js/runtime-main.4d897e34.js.map",
+    "static/js/2.00ee9c4d.chunk.js": "/ntnuipadling/static/js/2.00ee9c4d.chunk.js",
+    "static/js/2.00ee9c4d.chunk.js.map": "/ntnuipadling/static/js/2.00ee9c4d.chunk.js.map",
+    "index.html": "/ntnuipadling/index.html",
+    "precache-manifest.65aff231ad8e92517e2b61865730213b.js": "/ntnuipadling/precache-manifest.65aff231ad8e92517e2b61865730213b.js",
+    "service-worker.js": "/ntnuipadling/service-worker.js",
+    "static/css/main.4731f16e.chunk.css.map": "/ntnuipadling/static/css/main.4731f16e.chunk.css.map",
+    "static/js/2.00ee9c4d.chunk.js.LICENSE.txt": "/ntnuipadling/static/js/2.00ee9c4d.chunk.js.LICENSE.txt",
+    "static/media/Error404.png": "/ntnuipadling/static/media/Error404.5842b6a0.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4d897e34.js",
+    "static/js/2.00ee9c4d.chunk.js",
+    "static/css/main.4731f16e.chunk.css",
+    "static/js/main.8ecc9e8f.chunk.js"
+  ]
+}
