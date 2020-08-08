@@ -105,7 +105,7 @@ class SignUp extends Component {
           </div>
 
           <div className="input-field">
-            <label htmlFor="password">Password (Min 6 Characters)</label>
+            <label htmlFor="password">Password (Min 6 Charactersgit)</label>
             <input
               type="password"
               id="password"
