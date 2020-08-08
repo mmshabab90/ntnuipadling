@@ -49,11 +49,19 @@ class SignIn extends Component {
               Login
             </button>
 
-            <div className="divider" style={{ marginTop: "15px" }} />
+            <div
+              className="divider"
+              style={{ marginTop: "15px", marginBottom: "15px" }}
+            />
+
             <div className="center">
               <p className="flow-text">OR</p>
             </div>
-            <div className="divider" />
+
+            <div
+              className="divider"
+              style={{ marginTop: "15px", marginBottom: "15px" }}
+            />
 
             <button className="btn blue lighten-1 z-depth-3">
               Login with Facebook
