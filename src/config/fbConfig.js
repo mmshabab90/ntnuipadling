@@ -10,8 +10,8 @@ const firebaseConfig = {
   projectId: "ntnui-paddling",
   storageBucket: "ntnui-paddling.appspot.com",
   messagingSenderId: "1013895161872",
-  appId: "1:1013895161872:web:5b8c67690400519304c295",
-  measurementId: "G-6GRLHYH7G7",
+  appId: "1:1013895161872:web:662491935ade095404c295",
+  measurementId: "G-CD1810NNG5",
 };
 
 firebase.initializeApp(firebaseConfig);
