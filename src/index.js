@@ -26,14 +26,23 @@ const store = createStore(
   rootReducer,
   compose(
     applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
-    reduxFirestore(fbConfig)
+    reduxFirestore(firebase, fbConfig)
     // reactReduxFirebase(fbConfig)
   )
 );
 
+const profileSpecificProps = {
+  config: fbConfig,
+  userProfile: "users",
+  useFirestoreForProfile: true,
+  enableRedirectHandling: false,
+  resetBeforeLogin: false,
+};
+
 const reactReduxFirebaseProps = {
   firebase,
-  config: fbConfig,
+  // config: fbConfig,
+  config: profileSpecificProps,
   dispatch: store.dispatch,
   createFirestoreInstance,
   userProfile: "users", // where profiles are stored in database

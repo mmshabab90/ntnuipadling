@@ -25,9 +25,9 @@ export default class EventSummary extends Component {
     const { signedParticipants, blockAdd } = this.state;
 
     return (
-      <div className="col s12 m5 offset-m1 card z-depth-0 event-summary">
+      <div className="col s12 m6 card small z-depth-0 event-summary">
         <div className="card-content grey-text text-darken-3">
-          <div className="light-green lighten-4">
+          <div className="light-green lighten-4" style={{ height: "155px" }}>
             <span className="card-title center green-text text-darken-4">
               {event.day}
             </span>
@@ -74,7 +74,7 @@ export default class EventSummary extends Component {
 
               <div className="col s6">
                 <Link className="btn z-depth-1 teal lighten-2" to={location}>
-                  Edit
+                  Details
                 </Link>
               </div>
             </div>

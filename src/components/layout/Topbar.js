@@ -15,7 +15,7 @@ class Topbar extends Component {
   }
 
   render() {
-    const { auth } = this.props;
+    const { auth, profile } = this.props;
     return (
       <div className="navbar z-depth-3">
         <nav className="nav-wrapper cyan darken-3">
@@ -46,11 +46,11 @@ class Topbar extends Component {
               ) : null}
 
               <NavLink
-                to="/"
+                to="/user-profile"
                 className="btn btn-floating teal lighten-1 right"
                 style={{ marginTop: "10px" }}
               >
-                MS
+                {profile.initials}
               </NavLink>
             </div>
           </div>
@@ -63,6 +63,7 @@ class Topbar extends Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth,
+    profile: state.firebase.profile,
   };
 };
 

@@ -1,15 +1,52 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { signOut } from "../../store/actions/AuthActions";
+import sidenavBg from "./assets/sidenavBg.png";
 
 class RightSideNav extends Component {
   componentDidMount() {}
 
   render() {
-    const { signOut } = this.props;
+    const { signOut, profile, auth } = this.props;
     return (
       <ul id="sidenav-right" className="sidenav">
+        <li>
+          <div className="user-view">
+            <div className="background bg-rightsidenav">
+              <img
+                src={sidenavBg}
+                alt="sidenav-bg"
+                style={{ height: "250px", width: "100%" }}
+              />
+            </div>
+
+            <Link to="/user-view">
+              <div className="center" style={{ paddingLeft: "40%" }}>
+                <img alt="avatar" className="circle" src={profile.imageUrl} />
+              </div>
+            </Link>
+            <Link
+              to="/user-view"
+              className="black-text username"
+              style={{ fontWeight: "bolder" }}
+            >
+              {profile.userName}
+            </Link>
+            <Link
+              to="/user-view"
+              className="black-text email"
+              style={{ fontWeight: "bolder" }}
+            >
+              {auth.email}
+            </Link>
+          </div>
+        </li>
+
+        <li>
+          <div className="divider" />
+        </li>
+
         <li className="sidenav-close">
           <NavLink to="/dashboard">
             <i className="material-icons left">dashboard</i> Dashboard
@@ -56,9 +93,16 @@ class RightSideNav extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    profile: state.firebase.profile,
+    auth: state.firebase.auth,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     signOut: () => dispatch(signOut()).then(this.history.pushState("/")),
   };
 };
-export default connect(null, mapDispatchToProps)(RightSideNav);
+export default connect(mapStateToProps, mapDispatchToProps)(RightSideNav);

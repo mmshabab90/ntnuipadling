@@ -85,6 +85,7 @@ class CreateEvent extends Component {
         status: status,
       };
       this.props.createEvent(data);
+      this.props.history.push("/events");
     }
   };
 

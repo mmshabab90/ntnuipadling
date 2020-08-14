@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 import Spinner from "../layout/Spinner";
-import { Select, DatePicker } from "react-materialize";
+import { Select, DatePicker, Row, Col } from "react-materialize";
 
 export class EventDetails extends Component {
   constructor(props) {
@@ -30,6 +30,17 @@ export class EventDetails extends Component {
     this.setState({
       [e.target.id]: e.target.value,
     });
+  };
+
+  convertTime = (value) => {
+    const d = new Date(value * 1000);
+    const date = d.toDateString();
+    const time = d.toLocaleTimeString();
+
+    return {
+      date: date,
+      time: time,
+    };
   };
 
   handleEdit = () => {
@@ -173,10 +184,31 @@ export class EventDetails extends Component {
           <button className="btn teal z-depth-2" onClick={this.handleSubmit}>
             Save
           </button>
+
+          <div className="card-panel hoverable">
+            <Row>
+              <Col s={6} className="left">
+                <p className="grey-text">Created by:</p>
+                <p className="grey-text">Username: {event.createdBy}</p>
+                <p className="grey-text">Full Name: {event.authorName}</p>
+              </Col>
+              {event && event.created_at ? (
+                <Col s={6} className="right">
+                  <p className="grey-text">Created At:</p>
+                  <blockquote className="grey-text">
+                    Date: {this.convertTime(event.created_at.seconds).date}
+                  </blockquote>
+                  <blockquote className="grey-text">
+                    Time: {this.convertTime(event.created_at.seconds).time}
+                  </blockquote>
+                </Col>
+              ) : null}
+            </Row>
+          </div>
         </div>
       );
     } else {
-      return <Spinner />;
+      return <Spinner message="Loading data, please wait..." />;
     }
   }
 }

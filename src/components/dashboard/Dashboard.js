@@ -26,10 +26,10 @@ class Dashboard extends Component {
     return (
       <div className="container dashboard">
         <div className="row">
-          <div className="col s12 m8">
+          <div className="col s12 m9">
             <EventList events={events} auth={auth} />
           </div>
-          <div className="col s12 m3 offset-m1">
+          <div className="col s12 m3">
             <Notifications />
           </div>
         </div>
