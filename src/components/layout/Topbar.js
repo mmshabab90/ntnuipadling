@@ -45,13 +45,15 @@ class Topbar extends Component {
                 </Link>
               ) : null}
 
-              <NavLink
-                to="/user-profile"
-                className="btn btn-floating teal lighten-1 right"
-                style={{ marginTop: "10px" }}
-              >
-                {profile.initials}
-              </NavLink>
+              {auth.isLoaded && auth.uid ? (
+                <NavLink
+                  to="/user-profile"
+                  className="btn btn-floating teal lighten-1 right"
+                  style={{ marginTop: "10px" }}
+                >
+                  {profile.initials}
+                </NavLink>
+              ) : null}
             </div>
           </div>
         </nav>
