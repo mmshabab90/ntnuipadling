@@ -59,13 +59,11 @@ footer {
 }
 
 .bg-rightsidenav {
-  /*Addtheblureffect*/
-  filter: blur(3px);
-  -webkit-filter: blur(3px);
-  /*Fullheight*/
-  height: 100%;
-  /*Centerandscaletheimagenicely*/
-  background-position: center;
+  /*Addtheblureffect*/filter: brightness(0.4);
+  filter: blur(11px);
+  -webkit-filter: blur(11px);
+  /*Fullheight*/height: 100%;
+  /*Centerandscaletheimagenicely*/background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
