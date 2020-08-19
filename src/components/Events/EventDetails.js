@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 import Spinner from "../layout/Spinner";
-import { Select, DatePicker, Row, Col } from "react-materialize";
+import { Select, Row, Col } from "react-materialize";
+import DatePick from "../UI/DatePick";
 
 export class EventDetails extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ export class EventDetails extends Component {
     this.state = {
       name: "",
       date: "",
+      editedDate: "",
       startTime: "",
       endTime: "",
       signedParticipants: 0,
@@ -19,9 +21,6 @@ export class EventDetails extends Component {
       error: false,
       editable: false,
     };
-
-    //refs
-    this.date = React.createRef();
   }
 
   componentDidMount() {}
@@ -30,6 +29,11 @@ export class EventDetails extends Component {
     this.setState({
       [e.target.id]: e.target.value,
     });
+  };
+
+  handleDate = (eDate) => {
+    // console.log(eDate);
+    this.setState({ editedDate: eDate });
   };
 
   convertTime = (value) => {
@@ -80,8 +84,8 @@ export class EventDetails extends Component {
       editedData.name = event.name;
     }
 
-    if (event.date !== this.state.date) {
-      editedData.date = this.state.date;
+    if (event.date !== this.state.editedDate) {
+      editedData.date = this.state.editedDate;
     } else {
       editedData.date = event.date;
     }
@@ -138,7 +142,7 @@ export class EventDetails extends Component {
           </div>
 
           <div className="input-field left-align">
-            <span className="grey-text">Event Name</span>
+            <p className="grey-text">Event Name</p>
             <input
               type="text"
               id="name"
@@ -149,29 +153,17 @@ export class EventDetails extends Component {
           </div>
 
           <div className="input-field left-align">
-            <span className="grey-text">Pick a date</span>
+            <polygon className="grey-text">Pick a date</polygon>
 
-            <DatePicker
-              defaultValue={event.date}
-              id="date"
-              disabled={editable === true ? false : true}
-              options={{
-                format: "mm/dd/yyyy",
-              }}
-              ref={this.date}
-              onChange={(newDate) => {
-                this.handleChange({
-                  target: {
-                    id: "date",
-                    value: newDate,
-                  },
-                });
-              }}
-            />
+            {editable === false ? (
+              <p className="grey-text">{event.date}</p>
+            ) : (
+              <DatePick change={this.handleDate} />
+            )}
           </div>
 
           <div className="input-field left-align">
-            <span className="grey-text">Event Status</span>
+            <p className="grey-text">Event Status</p>
             <Select
               value={event.status}
               disabled={editable === true ? false : true}
