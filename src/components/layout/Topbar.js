@@ -32,7 +32,7 @@ class Topbar extends Component {
                 to={auth.uid ? "/dashboard" : "/"}
                 className="brand-logo center"
               >
-                <img alt="logo" src={Logo} />
+                <img alt="logo" src={Logo} className="logo-img" />
               </Link>
 
               {auth.isLoaded && auth.uid ? (

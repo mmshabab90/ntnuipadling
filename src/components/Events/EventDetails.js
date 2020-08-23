@@ -3,8 +3,10 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 import Spinner from "../layout/Spinner";
-import { Select, Row, Col } from "react-materialize";
+import { Select, Row, Col, Table } from "react-materialize";
 import DatePick from "../UI/DatePick";
+import TimePick from "../UI/TimePick";
+import { editEvent } from "../../store/actions/EventActions";
 
 export class EventDetails extends Component {
   constructor(props) {
@@ -33,7 +35,21 @@ export class EventDetails extends Component {
 
   handleDate = (eDate) => {
     // console.log(eDate);
-    this.setState({ editedDate: eDate });
+    const { event } = this.props;
+
+    if (eDate) {
+      this.setState({ editedDate: eDate });
+    } else {
+      this.setState({ editedDate: event.date });
+    }
+  };
+
+  handleStartTime = (sTime) => {
+    this.setState({ startTime: sTime });
+  };
+
+  handleEndTime = (eTime) => {
+    this.setState({ endTime: eTime });
   };
 
   convertTime = (value) => {
@@ -69,6 +85,7 @@ export class EventDetails extends Component {
     const { event } = this.props;
     e.preventDefault();
     let editedData = {
+      id: this.props.match.params.id,
       name: "",
       date: "",
       start_time: "",
@@ -84,10 +101,10 @@ export class EventDetails extends Component {
       editedData.name = event.name;
     }
 
-    if (event.date !== this.state.editedDate) {
-      editedData.date = this.state.editedDate;
+    if (this.state.editedDate === "") {
+      editedData.date = this.state.date;
     } else {
-      editedData.date = event.date;
+      editedData.date = this.state.editedDate;
     }
 
     if (event.start_time !== this.state.startTime) {
@@ -120,7 +137,9 @@ export class EventDetails extends Component {
       editedData.status = event.status;
     }
 
-    console.log(editedData);
+    // console.log(editedData);
+    this.props.editEvent(editedData);
+    this.setState({ editable: false });
   };
 
   render() {
@@ -130,52 +149,117 @@ export class EventDetails extends Component {
     if (event) {
       return (
         <div className="container section event-details">
-          <div className="row center">
-            <div className="col s10">
-              <p className="flow-text">{event.name}</p>
-            </div>
-            <div className="col s2">
-              <button className="btn teal" onClick={this.handleEdit}>
-                <i className="material-icons left">edit</i>Edit
-              </button>
-            </div>
-          </div>
+          <Table>
+            <tbody>
+              <tr>
+                <td className="flow-text center">{event.name}</td>
+                <td>
+                  <button className="btn teal" onClick={this.handleEdit}>
+                    <i className="material-icons left">edit</i>Edit
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </Table>
 
           <div className="input-field left-align">
             <p className="grey-text">Event Name</p>
-            <input
-              type="text"
-              id="name"
-              onChange={this.handleChange}
-              defaultValue={event.name}
-              disabled={editable === true ? false : true}
-            />
+
+            {editable === false ? (
+              <p className="grey-text">{event.name}</p>
+            ) : (
+              <input
+                type="text"
+                id="name"
+                onChange={this.handleChange}
+                defaultValue={event.name}
+              />
+            )}
           </div>
 
           <div className="input-field left-align">
-            <polygon className="grey-text">Pick a date</polygon>
+            <p className="grey-text">Date</p>
 
             {editable === false ? (
               <p className="grey-text">{event.date}</p>
             ) : (
-              <DatePick change={this.handleDate} />
+              <DatePick change={this.handleDate} defVal={event.date} />
+            )}
+          </div>
+
+          <div className="input-field left-align">
+            <p className="grey-text">Start Time</p>
+            {editable === false ? (
+              <p className="grey-text">{event.start_time}</p>
+            ) : (
+              <TimePick
+                id="startTime"
+                change={this.handleStartTime}
+                defVal={event.start_time}
+              />
+            )}
+          </div>
+
+          <div className="input-field left-align">
+            <p className="grey-text">End Time</p>
+
+            {editable === false ? (
+              <p className="grey-text">{event.end_time}</p>
+            ) : (
+              <TimePick
+                id="endTime"
+                change={this.handleEndTime}
+                defVal={event.end_time}
+              />
+            )}
+          </div>
+
+          <div className="input-field left-align">
+            <p className="grey-text">Total number of participants</p>
+
+            {editable === false ? (
+              <p className="grey-text">{event.total_participants}</p>
+            ) : (
+              <input
+                type="text"
+                id="totalParticipants"
+                onChange={this.handleChange}
+                defaultValue={event.total_participants}
+              />
             )}
           </div>
 
           <div className="input-field left-align">
             <p className="grey-text">Event Status</p>
-            <Select
-              value={event.status}
-              disabled={editable === true ? false : true}
-            >
-              <option value="Active">Active</option>
-              <option value="Inactive">Inactive</option>
-            </Select>
+
+            {editable === false ? (
+              <p className="grey-text">{event.status}</p>
+            ) : (
+              <Select value={event.status}>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </Select>
+            )}
           </div>
 
-          <button className="btn teal z-depth-2" onClick={this.handleSubmit}>
-            Save
-          </button>
+          {editable === false ? null : (
+            <div>
+              <button
+                className="btn red"
+                onClick={() => this.setState({ editable: false })}
+                style={{ marginRight: "15px" }}
+              >
+                <i className="material-icons left">clear</i> Cancel
+              </button>
+
+              <button
+                className="btn teal z-depth-2"
+                onClick={this.handleSubmit}
+              >
+                <i className="material-icons left">edit</i> Save
+              </button>
+            </div>
+          )}
 
           <div className="card-panel hoverable">
             <Row>
@@ -214,7 +298,13 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    editEvent: (event) => dispatch(editEvent(event)),
+  };
+};
+
 export default compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect(() => ["events"])
 )(EventDetails);

@@ -8,7 +8,7 @@ export class DatePick extends Component {
       value: new Date(),
       format: "mm/dd/yyyy",
       formatMoment: "ddd D, MMM",
-      date: "",
+      date: this.props.defVal,
     };
 
     //refs
@@ -21,7 +21,7 @@ export class DatePick extends Component {
     let elemsDatePicker = document.querySelectorAll(".datepicker");
 
     M.Datepicker.init(elemsDatePicker, {
-      format: "dd/mm/yyyy",
+      format: "mm/dd/yyyy",
       onClose: context.handleDate,
     });
   }
@@ -42,6 +42,7 @@ export class DatePick extends Component {
         className="datepicker"
         ref={this.date}
         onChange={this.handleDate}
+        defaultValue={this.props.defVal}
       />
     );
   }

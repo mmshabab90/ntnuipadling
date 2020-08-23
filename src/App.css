@@ -7,6 +7,11 @@
   pointer-events: none;
 }
 
+.logo-img {
+  width: 90px;
+  padding-top: 7px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -59,11 +64,14 @@ footer {
 }
 
 .bg-rightsidenav {
-  /*Addtheblureffect*/filter: brightness(0.4);
+  /*Addtheblureffect*/
+  filter: brightness(0.4);
   filter: blur(11px);
   -webkit-filter: blur(11px);
-  /*Fullheight*/height: 100%;
-  /*Centerandscaletheimagenicely*/background-position: center;
+  /*Fullheight*/
+  height: 100%;
+  /*Centerandscaletheimagenicely*/
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -73,5 +81,10 @@ footer {
   main,
   footer {
     padding-left: 0;
+  }
+
+  .logo-img {
+    width: 90px;
+    padding-top: 2px;
   }
 }
